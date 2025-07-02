@@ -16,19 +16,93 @@ header {
   padding: 10px;
 }
 
-#logoName{
-  font-size: 38px;
+#logoName {
+  font-size: 32px;
   text-decoration: none;
   color: #242424;
 }
 
-#accountLink{
-  font-size: 20px;
+#accountLink {
+  font-size: 14px;
   text-decoration: none;
   color: #242424;
 }
 
-nav{
+nav {
   background-color: #410179;
   color: white;
+  font-size: 18px;
+  padding: 10px 0px 10px 0px;
+}
+
+nav ul {
+  display: flex;
+  justify-content: space-evenly;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+nav li {
+  padding: 0.25rem 0.5rem;
+}
+
+h1{
+  font-size: 22px;
+  color: #242424;
+}
+
+.delorean-container {
+  position: relative;
+  width: 100%;
+  margin: 2rem 0;
+  max-width: 100vw;
+  overflow: hidden;
+}
+
+.delorean-container picture img,
+.delorean-container picture source {
+  display: block;
+  width: 100vw;
+  max-width: 85%;
+  height: auto;
+  margin: 40px;
+}
+
+.delorean-info {
+  position: absolute;
+  top: 10px;
+  left: 20px;
+  background: rgba(255,255,255,0.8);
+  padding: 10px;
+  border-radius: 12px;
+  box-shadow: 2px 2px 12px rgba(0,0,0,0.15);
+}
+
+.delorean-container h2{
+  margin: 0;
+  font-size: 18px;
+  color: #8530d1;
+}
+
+.delorean-container p{
+  margin: 5px 0 5px 0;
+  font-size: 16px;
+  color: #8530d1;
+}
+
+.delorean-container button {
+  background-color: #8530d1;
+  color: #fff;
+  border: none;
+  outline: none;
+  padding: 0.5rem 1.25rem;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.delorean-container button:hover {
+  background-color: #410179;
 }
