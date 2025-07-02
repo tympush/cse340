@@ -1,3 +1,13 @@
+:root {
+  --primary-bg: #410179;
+  --primary-accent: #8530d1;
+  --text-main: #242424;
+  --text-light: #fff;
+  --marker-color: #242424;
+  --info-bg: rgba(255,255,255,0.8);
+  --button-hover: #410179;
+}
+
 /******* Change Box Model ***************/
 *,
 *:before,
@@ -19,18 +29,18 @@ header {
 #logoName {
   font-size: 32px;
   text-decoration: none;
-  color: #242424;
+  color: var(--text-main);
 }
 
 #accountLink {
   font-size: 14px;
   text-decoration: none;
-  color: #242424;
+  color: var(--text-main);
 }
 
 nav {
-  background-color: #410179;
-  color: white;
+  background-color: var(--primary-bg);
+  color: var(--text-light);
   font-size: 18px;
   padding: 10px 0px 10px 0px;
 }
@@ -47,9 +57,13 @@ nav li {
   padding: 0.25rem 0.5rem;
 }
 
+main {
+  padding: 0 10px 0 10px;
+}
+
 h1{
   font-size: 22px;
-  color: #242424;
+  color: var(--text-main);
 }
 
 .delorean-container {
@@ -73,7 +87,7 @@ h1{
   position: absolute;
   top: 10px;
   left: 20px;
-  background: rgba(255,255,255,0.8);
+  background: var(--info-bg);
   padding: 10px;
   border-radius: 12px;
   box-shadow: 2px 2px 12px rgba(0,0,0,0.15);
@@ -82,18 +96,18 @@ h1{
 .delorean-container h2{
   margin: 0;
   font-size: 18px;
-  color: #8530d1;
+  color: var(--primary-accent);
 }
 
 .delorean-container p{
   margin: 5px 0 5px 0;
   font-size: 16px;
-  color: #8530d1;
+  color: var(--primary-accent);
 }
 
 .delorean-container button {
-  background-color: #8530d1;
-  color: #fff;
+  background-color: var(--primary-accent);
+  color: var(--text-light);
   border: none;
   outline: none;
   padding: 0.5rem 1.25rem;
@@ -104,5 +118,25 @@ h1{
 }
 
 .delorean-container button:hover {
-  background-color: #410179;
+  background-color: var(--button-hover);
+}
+
+.reviews-container ul {
+  list-style: disc;
+  padding-left: 1em;
+  margin-left: 0;
+}
+
+.reviews-container ul li {
+  font-size: 16px;
+  color: var(--text-main);
+  margin-bottom: 0.75em;
+}
+
+.reviews-container ul li:last-child {
+  margin-bottom: 0;
+}
+
+.reviews-container ul li::marker {
+  color: var(--marker-color);
 }
