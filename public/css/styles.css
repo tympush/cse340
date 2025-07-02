@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&family=Lexend+Exa:wght@100..900&family=Tinos:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
 :root {
   --primary-bg: #410179;
   --primary-accent: #8530d1;
@@ -28,14 +30,24 @@ header {
 
 #logoName {
   font-size: 32px;
+  font-family: "Exo 2", sans-serif;
   text-decoration: none;
   color: var(--text-main);
 }
 
 #accountLink {
   font-size: 14px;
+  font-family: "Lexend Exa", sans-serif;
   text-decoration: none;
   color: var(--text-main);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Tinos", serif;
+}
+
+p, a, button, li {
+  font-family: "Lexend Exa", sans-serif;
 }
 
 nav {
@@ -178,18 +190,71 @@ h1{
   font-size: 16px;
 }
 
-@media (min-width: 1000px) {
+@media (min-width: 800px) {
   body {
     background: url('/images/site/better-checker.png') repeat;
   }
 
   #wrapper {
-    width: 100%;
-    max-width: 900px;
+    width: 900px;
+    max-width: 90%;
     margin: 30px auto;
     background: white;
     outline: 4px solid var(--primary-accent);
     border-radius: 12px;
     padding: 20px;
+  }
+
+  #logoName {
+    font-size: 48px;
+  }
+
+  #accountLink {
+    font-size: 20px;
+  }
+
+  nav {
+    font-size: 20px;
+  }
+
+  h1 {
+    font-size: 28px;
+  }
+
+  .delorean-info {
+    padding: 20px;
+  }
+
+  .delorean-container h2{
+    font-size: 32px;
+  }
+
+  .delorean-container p{
+    margin: 10px 0 15px 0;
+    font-size: 24px;
+  }
+
+  .delorean-container button {
+    font-size: 24px;
+  }
+
+  .multiple-grid {
+    display: grid;
+    gap: 30px;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .reviews-container {
+    grid-column: 2/3;
+    grid-row: 1/2;
+  }
+
+  .reviews-container ul li {
+    font-size: 20px;
+  }
+
+  .upgrade-container {
+    grid-column: 1/2;
+    grid-row: 1/2;
   }
 }
