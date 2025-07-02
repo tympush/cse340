@@ -190,6 +190,10 @@ h1{
   font-size: 16px;
 }
 
+footer {
+  padding-left: 10px;
+}
+
 @media (min-width: 800px) {
   body {
     background: url('/images/site/better-checker.png') repeat;
