@@ -4,3 +4,31 @@
 *:after {
   box-sizing: border-box;
 }
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+#logoName{
+  font-size: 38px;
+  text-decoration: none;
+  color: #242424;
+}
+
+#accountLink{
+  font-size: 20px;
+  text-decoration: none;
+  color: #242424;
+}
+
+nav{
+  background-color: #410179;
+  color: white;
+}
