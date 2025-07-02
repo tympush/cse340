@@ -177,3 +177,19 @@ h1{
   color: var(--primary-accent);
   font-size: 16px;
 }
+
+@media (min-width: 1000px) {
+  body {
+    background: url('/images/site/better-checker.png') repeat;
+  }
+
+  #wrapper {
+    width: 100%;
+    max-width: 900px;
+    margin: 30px auto;
+    background: white;
+    outline: 4px solid var(--primary-accent);
+    border-radius: 12px;
+    padding: 20px;
+  }
+}
