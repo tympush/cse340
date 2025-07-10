@@ -14,7 +14,7 @@ WHERE account_id = 1;
 --4
 UPDATE public.inventory
 SET inv_description = REPLACE(inv_description, 'the small interiors', 'a huge interior')
-WHERE inv_id = 25;
+WHERE inv_id = 10;
 
 --5
 SELECT 
