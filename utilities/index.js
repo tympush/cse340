@@ -26,7 +26,7 @@ Util.getNav = async function (req, res, next) {
 }
 
 /* **************************************
-* Build the classification view HTML
+* Build the classification view HTML 
 * ************************************ */
 Util.buildClassificationGrid = async function(data){
   let grid
