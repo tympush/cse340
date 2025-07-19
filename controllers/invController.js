@@ -7,16 +7,19 @@ const invCont = {}
  *  Build inventory by classification view
  * ************************** */
 invCont.buildByClassificationId = async function (req, res, next) {
-  const classification_id = req.params.classificationId
-  const data = await invModel.getInventoryByClassificationId(classification_id)
-  const grid = await utilities.buildClassificationGrid(data)
-  let nav = await utilities.getNav()
-  const className = data[0].classification_name
+  const classification_id = req.params.classificationId;
+  if (!/^\d+$/.test(classification_id)) {
+    return next({ status: 400});
+  }
+  const data = await invModel.getInventoryByClassificationId(classification_id);
+  const grid = await utilities.buildClassificationGrid(data);
+  let nav = await utilities.getNav();
+  const className = data && data[0] ? data[0].classification_name : "Unknown";
   res.render("./inventory/classification", {
     title: className + " vehicles",
     nav,
     grid,
-  })
+  });
 }
 
 /* ***************************
@@ -27,7 +30,7 @@ invCont.buildDetailView = async function (req, res, next) {
   const vehicle = await invModel.getInventoryById(inv_id);
   const detail = utilities.buildDetailView(vehicle);
   let nav = await utilities.getNav();
-  const title = `${vehicle.inv_make} ${vehicle.inv_model}`;
+  const title = vehicle ? `${vehicle.inv_year} ${vehicle.inv_make} ${vehicle.inv_model}` : "Vehicle Not Found";
   res.render("./inventory/detail", {
     title,
     nav,

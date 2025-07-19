@@ -66,12 +66,21 @@ Util.buildDetailView = function(vehicle) {
     return '<p class="notice">Sorry, no matching vehicle could be found.</p>';
   }
   let detail = '<div class="vehicle-detail">';
+  detail += `<div class="vehicle-image-container">`
+  detail += `<p>This vehicle has passed inspection by an ASE-certified technician.</p>`;
   detail += `<img src="${vehicle.inv_image}" alt="Image of ${vehicle.inv_make} ${vehicle.inv_model}">`;
+  detail += `</div>`;
+  detail += `<div class="vehicle-info-container">`;
+  detail += `<div class="price-tag">`
   detail += `<h2>${vehicle.inv_year} ${vehicle.inv_make} ${vehicle.inv_model}</h2>`;
   detail += `<p><strong>Price:</strong> $${new Intl.NumberFormat('en-US').format(vehicle.inv_price)}</p>`;
+  detail += `</div>`;
+  detail += `<div class="description-tag">`
   detail += `<p><strong>Description:</strong> ${vehicle.inv_description}</p>`;
   detail += `<p><strong>Color:</strong> ${vehicle.inv_color}</p>`;
   detail += `<p><strong>Miles:</strong> ${new Intl.NumberFormat('en-US').format(vehicle.inv_miles)}</p>`;
+  detail += `</div>`;
+  detail += `</div>`;
   detail += '</div>';
   return detail;
 }

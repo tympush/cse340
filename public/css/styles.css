@@ -197,6 +197,7 @@ h1{
 
 footer {
   padding-left: 10px;
+  color: var(--text-main);
 }
 
 /*INVENTORY ITEMS*/
@@ -254,6 +255,52 @@ footer {
   font-size: 14px;
   color: var(--text-main);
   font-weight: bold;
+}
+
+/*ITEM DETAILS*/
+#itemInfoTitle {
+  text-align: center;
+}
+
+.vehicle-detail {
+  display: block;
+}
+
+.vehicle-detail .vehicle-image-container p{
+  background-color: var(--primary-accent);
+  color: var(--text-light);
+  padding: 10px;
+  margin: 0;
+  font-size: 14px;
+}
+
+.vehicle-detail .vehicle-image-container img {
+  width: 100%;
+  height: auto;
+  border-bottom: 10px solid var(--primary-bg);
+}
+
+.price-tag {
+  background-color: var(--inventory-item-bg);
+  padding: 10px;
+  border-radius: 8px;
+  color: var(--text-main);
+  margin-top: 20px;
+}
+
+.price-tag h2 {
+  margin: 0;
+  font-size: 20px;
+}
+
+.price-tag p {
+  margin: 0;
+  font-size: 14px;
+}
+
+.description-tag {
+  color: var(--text-main);
+  font-size: 14px;
 }
 
 @media (min-width: 800px) {
@@ -339,5 +386,34 @@ footer {
 
   .namePrice span {
     font-size: 18px;
+  }
+
+  /*ITEM DETAILS*/
+  .vehicle-detail {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  
+  .vehicle-detail .vehicle-image-container p{
+    font-size: 16px;
+  }
+
+  .price-tag {
+    margin-top: 0;
+  }
+
+  .price-tag h2 {
+    font-size: 24px;
+  }
+
+  .price-tag p {
+    margin: 0;
+    font-size: 16px;
+  }
+
+  .description-tag {
+    color: var(--text-main);
+    font-size: 16px;
   }
 }
