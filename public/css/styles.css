@@ -47,7 +47,7 @@ h1, h2, h3, h4, h5, h6 {
   font-family: "Tinos", serif;
 }
 
-p, a, button, li {
+p, a, button, li, label {
   font-family: "Lexend Exa", sans-serif;
 }
 
@@ -303,6 +303,50 @@ footer {
   font-size: 14px;
 }
 
+/*LOGIN FORM*/
+form{
+  background-color: var(--primary-accent);
+  padding: 14px 40px 14px 40px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 8px;
+}
+
+form label {
+  color: var(--text-light);
+  font-size: 20px;
+  margin-bottom: 6px;
+  font-weight: bold;
+}
+
+form input {
+  margin-bottom: 12px;
+  font-size: 20px;
+  padding: 4px;
+  border-radius: 6px;
+}
+
+form button {
+  min-width: 100px;
+  font-size: 16px;
+  padding: 4px;
+  border-radius: 9999px;
+  margin-bottom: 14px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+form p {
+  color: var(--text-light);
+  font-size: 22px;
+  text-align: center;
+}
+
+form p a {
+  color: var(--text-light);
+}
+
 @media (min-width: 800px) {
   body {
     background: url('/images/site/better-checker.png') repeat;
@@ -415,5 +459,25 @@ footer {
   .description-tag {
     color: var(--text-main);
     font-size: 16px;
+  }
+
+  /*LOGIN FORM*/
+  form label {
+    font-size: 24px;
+  }
+
+  form input {
+    font-size: 24px;
+  }
+
+  form button {
+    min-width: 140px;
+    font-size: 20px;
+    padding: 6px;
+    border-radius: 9999px;
+  }
+
+  form p {
+    font-size: 26px;
   }
 }

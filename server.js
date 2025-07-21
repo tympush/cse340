@@ -15,6 +15,7 @@ const static = require("./routes/static")
 const baseController = require("./controllers/baseController")
 const inventoryRoute = require("./routes/inventoryRoute")
 const utilities = require("./utilities/index")
+const accountRoute = require("./routes/accountRoute")
 
 /* ***********************
  * Middleware
@@ -52,6 +53,8 @@ app.use(static)
 app.get("/", utilities.handleErrors(baseController.buildHome))
 // Inventory routes
 app.use("/inv", inventoryRoute)
+// Account route
+app.use("/account", accountRoute)
 //Intentional Error Route
 app.get("/error-test", utilities.handleErrors(baseController.triggerError))
 // File Not Found Route - must be last route in list
