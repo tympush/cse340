@@ -326,6 +326,10 @@ form input {
   border-radius: 6px;
 }
 
+form small {
+  margin-bottom: 2px;
+}
+
 form #pword{
   width: 90%;
 }
@@ -356,6 +360,14 @@ form p {
 
 form p a {
   color: var(--text-light);
+}
+
+input:required:invalid, input:focus:invalid {
+  border-left: 6px solid red;
+}
+
+input:required:valid {
+  border-left: 6px solid green;
 }
 
 @media (min-width: 800px) {
