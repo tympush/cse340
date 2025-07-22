@@ -5,7 +5,8 @@ const utilities = require("../utilities/index")
 const accountController = require("../controllers/accountController")
 
 // Route to show the login view when "My Account" is clicked
-router.get("/", utilities.handleErrors(accountController.buildLogin))
 router.get("/login", utilities.handleErrors(accountController.buildLogin))
+// Registration Route
+router.get("/registration", utilities.handleErrors(accountController.buildRegister))
 
 module.exports = router

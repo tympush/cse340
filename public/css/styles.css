@@ -47,7 +47,7 @@ h1, h2, h3, h4, h5, h6 {
   font-family: "Tinos", serif;
 }
 
-p, a, button, li, label {
+p, a, button, li, label, small {
   font-family: "Lexend Exa", sans-serif;
 }
 
@@ -326,7 +326,18 @@ form input {
   border-radius: 6px;
 }
 
-form button {
+form #pword{
+  width: 90%;
+}
+
+form #pswdBtn {
+  font-size: 12px;
+  padding: 4px;
+  border-radius: 6px;
+  width: 9%;
+}
+
+form button[type="submit"] {
   min-width: 100px;
   font-size: 16px;
   padding: 4px;
@@ -470,7 +481,11 @@ form p a {
     font-size: 24px;
   }
 
-  form button {
+  form #pswdBtn {
+    font-size: 16px;
+  }
+
+  form button[type="submit"] {
     min-width: 140px;
     font-size: 20px;
     padding: 6px;

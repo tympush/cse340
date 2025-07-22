@@ -6,10 +6,15 @@
     <label for="email">Email:</label>
     <input type="email" name="account_email" required>
     <label for="password">Password:</label>
-    <input type="password" name="account_password" required>
+    <div>
+        <input type="password" id="pword" name="account_password" required>
+        <button type="button" id="pswdBtn">Show</button>
+    </div>
     <button type="submit">LOGIN</button>
     <p>
         No account?
-        <a href="/account/register">Sign-up</a>
+        <a href="/account/registration">Sign-up</a>
     </p>
 </form>
+
+<script src="/js/passwordHider.js"></script>
