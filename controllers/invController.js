@@ -43,4 +43,16 @@ invCont.buildDetailView = async function (req, res, next) {
   });
 }
 
+/* ****************************************
+*  Build Management view
+* *************************************** */
+invCont.buildManagement = async function (req, res, next) {
+  let nav = await utilities.getNav()
+  res.render("./inventory/management", {
+    title: "Management Tools",
+    nav,
+    errors: null,
+  })
+}
+
 module.exports = invCont
