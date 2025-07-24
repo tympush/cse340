@@ -1,0 +1,76 @@
+<% if (title) { %>
+<h1><%= title %></h1>
+<% } else {
+  res.redirect('/')
+} %>
+
+<%- messages() %>
+
+<% if (errors) { %>
+  <ul class="notice">
+    <% errors.array().forEach(error => { %>
+      <li><%= error.msg %></li>
+    <% }) %>
+  </ul>
+<% } %>
+
+<form action="/inv/add-inventory" method="post" id="addInvForm">
+
+    <label for="classificationList">Classification:</label>
+    <%- classificationList %> 
+    
+    <label for="inv_make">Make:</label>
+    <input type="text" id="inv_make" name="inv_make" required
+        value="<%= locals.inv_make %>"
+        pattern=".{3,}" title="Make must be at least 3 characters."
+        placeholder="Min 3 characters">
+
+    <label for="inv_model">Model:</label>
+    <input type="text" id="inv_model" name="inv_model" required
+        value="<%= locals.inv_model %>"
+        pattern=".{3,}" title="Model must be at least 3 characters."
+        placeholder="Min 3 characters">
+
+    <label for="inv_description">Description:</label>
+    <textarea id="inv_description" name="inv_description" required
+        placeholder="Provide a description of the vehicle."><%= locals.inv_description %></textarea>
+
+    <label for="inv_image">Image Path:</label>
+    <input type="text" id="inv_image" name="inv_image" required
+        value="<%= locals.inv_image || '/images/vehicles/no-image.png' %>"
+        pattern="^/images/vehicles/.*$" title="Image path must start with /images/vehicles/ and have a valid file extension."
+        placeholder="/images/vehicles/image.png">
+
+    <label for="inv_thumbnail">Thumbnail Path:</label>
+    <input type="text" id="inv_thumbnail" name="inv_thumbnail" required
+        value="<%= locals.inv_thumbnail || '/images/vehicles/no-image-tn.png' %>"
+        pattern="^/images/vehicles/.*$" title="Thumbnail path must start with /images/vehicles/ and have a valid file extension."
+        placeholder="/images/vehicles/image-tn.png">
+
+    <label for="inv_price">Price:</label>
+    <input type="number" id="inv_price" name="inv_price" required
+        value="<%= locals.inv_price %>"
+        min="0" step="1" title="Price must be a positive whole number."
+        placeholder="e.g. 25000">
+
+    <label for="inv_year">Year:</label>
+    <input type="number" id="inv_year" name="inv_year" required
+        value="<%= locals.inv_year %>"
+        min="1900" max="<%= new Date().getFullYear() + 1 %>"
+        title="Year must be a valid year."
+        placeholder="e.g. 2023">
+
+    <label for="inv_miles">Miles:</label>
+    <input type="number" id="inv_miles" name="inv_miles" required
+        value="<%= locals.inv_miles %>"
+        min="0" step="1" title="Miles must be a positive whol number."
+        placeholder="e.g. 50000">
+
+    <label for="inv_color">Color:</label>
+    <input type="text" id="inv_color" name="inv_color" required
+        value="<%= locals.inv_color %>"
+        pattern="^[a-zA-Z\s\-]+$" title="Color can contain letters, spaces, and hyphens only."
+        placeholder="e.g. Purple">
+
+    <button type="submit">Add Vehicle</button>
+</form>

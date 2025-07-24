@@ -304,7 +304,7 @@ footer {
   font-size: 14px;
 }
 
-/*LOGIN FORM*/
+/*FORMS*/
 form{
   background-color: var(--primary-accent);
   padding: 14px 40px 14px 40px;
@@ -320,7 +320,7 @@ form label {
   font-weight: bold;
 }
 
-form input {
+form input, form textarea, form select {
   margin-bottom: 12px;
   font-size: 20px;
   padding: 4px;
@@ -363,11 +363,17 @@ form p a {
   color: var(--text-light);
 }
 
-input:required:invalid, input:focus:invalid {
+input:required:invalid, input:focus:invalid,
+textarea:required:invalid, textarea:focus:invalid,
+select:required:invalid, select:focus:invalid
+{
   border-left: 6px solid red;
 }
 
-input:required:valid {
+input:required:valid,
+textarea:required:valid,
+select:required:valid
+{
   border-left: 6px solid green;
 }
 
@@ -503,12 +509,12 @@ input:required:valid {
     font-size: 16px;
   }
 
-  /*LOGIN FORM*/
+  /*FORMS*/
   form label {
     font-size: 24px;
   }
 
-  form input {
+  form input, form textarea, form select {
     font-size: 24px;
   }
 
