@@ -12,4 +12,10 @@ router.get("/management/", invController.buildManagement);
 // Route to build management view
 router.get("/add-classification/", invController.buildAddClassification);
 
+// Process the new classification data
+router.post(
+  "/add-classification",
+  invController.addClassification
+);
+
 module.exports = router;

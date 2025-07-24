@@ -6,14 +6,14 @@
     
 <%- messages() %>
 
-<form action="" method="post">
+<form action="/inv/add-classification" method="post">
     <label for="cname">Classification Name:</label>
 
     <small>
         classification name cannot contain spaces or special characters!
     </small>
 
-    <input type="text" id="cname" name="classification_name" required value="<%= locals.classification_name %>">
+    <input type="text" id="cname" name="classification_name" required pattern="^[a-zA-Z0-9]*$" value="<%= locals.classification_name %>">
     
     <button type="submit">Create</button>
 </form>

@@ -9,6 +9,7 @@ const accountController = require("../controllers/accountController")
 router.get("/login", utilities.handleErrors(accountController.buildLogin))
 // Registration Route
 router.get("/registration", utilities.handleErrors(accountController.buildRegister))
+
 // Process the registration data
 router.post(
   "/register",
