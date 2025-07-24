@@ -62,6 +62,7 @@ nav ul {
   list-style: none;
   padding: 0;
   margin: 0;
+  flex-wrap: wrap;
 }
 
 nav li {
@@ -370,6 +371,24 @@ input:required:valid {
   border-left: 6px solid green;
 }
 
+/*MANAGEMENT PAGE*/
+#managementLinkContainer {
+  padding: 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.managementLink {
+  color: var(--text-light);
+  background-color: var(--primary-accent);
+  padding: 12px;
+  margin: 6px;
+  border-radius: 9999px;
+  text-decoration: none;
+  font-size: 14px;
+}
+
 @media (min-width: 800px) {
   body {
     background: url('/images/site/better-checker.png') repeat;
@@ -506,5 +525,14 @@ input:required:valid {
 
   form p {
     font-size: 26px;
+  }
+
+  /*MANAGEMENT PAGE*/
+  #managementLinkContainer {
+    display: block;
+  }
+
+  .managementLink {
+    font-size: 16px;
   }
 }

@@ -70,10 +70,11 @@ invCont.buildAddClassification = async function (req, res, next) {
 /* ****************************************
 * Process New Classification
 * *************************************** */
-invCont.addClassification = async function (req, res, next) {
+invCont.addClassification = async function (req, res, next) { 
   let nav = await utilities.getNav()
   const { classification_name } = req.body
 
+  // --- Server-side validation ---
   if (!classification_name || !/^[a-zA-Z0-9]*$/.test(classification_name)) {
     req.flash("notice", "Please provide a valid classification name.")
     res.render("inventory/add-classification", {
@@ -90,12 +91,7 @@ invCont.addClassification = async function (req, res, next) {
 
     if (classificationResult) {
       req.flash("notice", `The ${classification_name} classification was successfully added.`)
-      res.status(201).render("inventory/add-classification", {
-        title: "Add Classification",
-        nav,
-        errors: null,
-        classification_name: "",
-      })
+      res.status(201).redirect("/inv/management")
     } else {
       req.flash("notice", "Sorry, adding the classification failed.")
       res.status(501).render("inventory/add-classification", {
