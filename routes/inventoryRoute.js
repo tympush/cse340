@@ -9,5 +9,7 @@ router.get("/type/:classificationId", invController.buildByClassificationId);
 router.get("/detail/:invId", invController.buildDetailView);
 // Route to build management view
 router.get("/management/", invController.buildManagement);
+// Route to build management view
+router.get("/add-classification/", invController.buildAddClassification);
 
 module.exports = router;
