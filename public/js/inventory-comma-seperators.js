@@ -24,10 +24,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Function to apply formatting when the page loads (for sticky data)
     function applyFormattingToInputs() {
-        if (priceInput && priceInput.value) {
+        if (priceInput?.value) { //(priceInput && priceInput.value)
             priceInput.value = formatNumberWithCommas(priceInput.value);
         }
-        if (milesInput && milesInput.value) {
+        if (milesInput?.value) {
             milesInput.value = formatNumberWithCommas(milesInput.value);
         }
     }
