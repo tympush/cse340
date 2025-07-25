@@ -148,6 +148,7 @@ invCont.addInventory = async function (req, res, next) {
     classification_id,
   } = req.body
 
+  // --- Server-side validation ---
   let errors = []
 
   if (!inv_make || inv_make.length < 3) errors.push("Make must be at least 3 characters.")
@@ -158,17 +159,23 @@ invCont.addInventory = async function (req, res, next) {
   
   if (!inv_description) errors.push("Description is required.")
   
+  // Basic image path check
   if (!inv_image || !/^\/images\/vehicles\/.+\.(png|jpe?g|gif|webp)$/.test(inv_image)) errors.push("Valid image path is required (e.g., /images/vehicles/image.png).")
   if (!inv_thumbnail || !/^\/images\/vehicles\/.+-tn\.(png|jpe?g|gif|webp)$/.test(inv_thumbnail)) errors.push("Valid thumbnail path is required (e.g., /images/vehicles/image-tn.png).")
   
-  const parsedInvPrice = parseFloat(inv_price);
-  if (isNaN(parsedInvPrice) || parsedInvPrice < 0 || !Number.isInteger(parsedInvPrice)) {
-      errors.push("Price must be a positive whole number.")
+  // Custom parsing for price and miles: remove commas before parseFloat
+  const cleanedInvPrice = inv_price ? inv_price.replace(/,/g, '') : ''; // Remove commas
+  const parsedInvPrice = parseFloat(cleanedInvPrice); 
+
+  if (isNaN(parsedInvPrice) || parsedInvPrice < 0 || !Number.isInteger(parsedInvPrice)) { 
+      errors.push("Price must be a positive whole number (e.g., 25,000).") // Example with comma for user guidance
   }
   
-  const parsedInvMiles = parseFloat(inv_miles);
-  if (isNaN(parsedInvMiles) || parsedInvMiles < 0 || !Number.isInteger(parsedInvMiles)) {
-      errors.push("Miles must be a positive whole number.")
+  const cleanedInvMiles = inv_miles ? inv_miles.replace(/,/g, '') : ''; // Remove commas
+  const parsedInvMiles = parseFloat(cleanedInvMiles); 
+
+  if (isNaN(parsedInvMiles) || parsedInvMiles < 0 || !Number.isInteger(parsedInvMiles)) { 
+      errors.push("Miles must be a positive whole number (e.g., 50,000).") // Example with comma for user guidance
   }
 
   if (!inv_color || !/^[a-zA-Z\s\-]+$/.test(inv_color)) errors.push("Color can only contain letters, spaces, and hyphens.")
@@ -176,43 +183,44 @@ invCont.addInventory = async function (req, res, next) {
 
 
   if (errors.length > 0) {
-    let classificationList = await utilities.buildClassificationList(classification_id)
+    let classificationList = await utilities.buildClassificationList(classification_id) // Rebuild with selected value
     res.render("./inventory/add-inventory", {
       title: "Add New Vehicle",
       nav,
       classificationList,
-      errors: { array: () => errors },
+      errors: { array: () => errors }, // Mimic express-validator errors object structure
       inv_make,
       inv_model,
       inv_year,
       inv_description,
       inv_image,
       inv_thumbnail,
-      inv_price,
-      inv_miles,
+      inv_price, // Send back original input for sticky form
+      inv_miles, // Send back original input for sticky form
       inv_color,
       classification_id,
     })
     return
   }
 
+  // --- Call the model to add to the database ---
   try {
     const invResult = await invModel.addInventory(
       inv_make,
       inv_model,
-      inv_year,
+      parsedInvYear, 
       inv_description,
       inv_image,
       inv_thumbnail,
-      parsedInvPrice,
-      parsedInvMiles,
+      parsedInvPrice, 
+      parsedInvMiles, 
       inv_color,
       classification_id
     )
 
     if (invResult) {
       req.flash("notice", `The ${inv_make} ${inv_model} was successfully added to inventory.`)
-      res.status(201).redirect("/inv/management")
+      res.status(201).redirect("/inv/management") // Redirect to management page on success
     } else {
       req.flash("notice", "Sorry, adding the new vehicle failed.")
       let classificationList = await utilities.buildClassificationList(classification_id)
@@ -220,12 +228,12 @@ invCont.addInventory = async function (req, res, next) {
         title: "Add New Vehicle",
         nav,
         classificationList,
-        errors: null,
+        errors: null, // No specific validation errors, but a general failure
         inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color, classification_id,
       })
     }
   } catch (error) {
-    next(error)
+    next(error) // Pass unexpected errors to Express error handler
   }
 }
 
