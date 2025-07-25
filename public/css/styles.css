@@ -230,7 +230,7 @@ footer {
 }
 
 #inv-display img {
-  width: 100px;
+  max-width: 100px;
   height: auto;
   margin-right: 24px;
   border-radius: 8px;
@@ -469,7 +469,7 @@ select:required:valid
   }
 
   #inv-display img {
-    width: 140px;
+    max-width: 140px;
   }
 
   .namePrice h2 {
