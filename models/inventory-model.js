@@ -52,7 +52,7 @@ async function getInventoryById(inv_id) {
 }
 
 /* *****************************
-* Add new inventory item to database (NEW ADDITION)
+* Add new inventory item to database
 * *************************** */
 async function addInventory(
   inv_make,

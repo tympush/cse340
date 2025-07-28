@@ -11,7 +11,7 @@ router.get("/detail/:invId", invController.buildDetailView);
 router.get("/management/", invController.buildManagement);
 // Route to add-classification view
 router.get("/add-classification/", invController.buildAddClassification);
-// Route to build Add-Inventory view (NEW ADDITION)
+// Route to build Add-Inventory view
 router.get("/add-inventory", invController.buildAddInventory);
 
 // Process the new classification data
@@ -19,7 +19,7 @@ router.post(
   "/add-classification",
   invController.addClassification
 );
-// Route to process Add-Inventory submission (NEW ADDITION)
+// Route to process Add-Inventory submission
 router.post(
   "/add-inventory",
   invController.addInventory
