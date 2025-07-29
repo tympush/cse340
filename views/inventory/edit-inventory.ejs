@@ -72,7 +72,7 @@
         pattern="^[a-zA-Z\s\-]+$" title="Color can contain letters, spaces, and hyphens only."
         placeholder="e.g. Purple">
 
-    <button type="submit">Update Vehicle</button>
+    <button type="submit" disabled>Update Vehicle</button>
 
     <input type="hidden" name="inv_id"
         <% if(locals.inv_id) { %> value="<%= locals.inv_id %>"
@@ -80,3 +80,4 @@
 </form>
 
 <script src="/js/inventory-comma-seperators.js"></script>
+<script src="/js/inv-update.js"></script>
