@@ -15,8 +15,8 @@
 <p class="management-text">Select a classification from the list to see the items belonging to the classification.</p>
 
 <div class="classification-select-container">
-<% if (typeof classificationSelect !== 'undefined' && classificationSelect) { %>
-  <%- classificationSelect %>
+<% if (typeof classificationList !== 'undefined' && classificationList) { %>
+  <%- classificationList %>
 <% } else { %>
   <select id="classificationList">
     <option value="">No classifications available</option>
