@@ -399,6 +399,17 @@ select:required:valid
   color: var(--text-main);
 }
 
+.classification-select-container {
+  text-align: center;
+}
+
+#classificationList {
+  margin-bottom: 12px;
+  font-size: 20px;
+  padding: 4px;
+  border-radius: 6px;
+}
+
 @media (min-width: 800px) {
   body {
     background: url('/images/site/better-checker.png') repeat;
@@ -544,5 +555,9 @@ select:required:valid
 
   .managementLink {
     font-size: 16px;
+  }
+
+  #classificationList {
+    font-size: 24px;
   }
 }

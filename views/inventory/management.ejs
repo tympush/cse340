@@ -14,13 +14,15 @@
 <h2 class="management-text">Manage Inventory</h2>
 <p class="management-text">Select a classification from the list to see the items belonging to the classification.</p>
 
+<div class="classification-select-container">
 <% if (typeof classificationSelect !== 'undefined' && classificationSelect) { %>
   <%- classificationSelect %>
 <% } else { %>
-  <select id="classificationSelect">
+  <select id="classificationList">
     <option value="">No classifications available</option>
   </select>
 <% } %>
+</div>
 
 <table id="inventoryDisplay"></table>
 
