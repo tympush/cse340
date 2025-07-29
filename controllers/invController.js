@@ -4,7 +4,7 @@ const utilities = require("../utilities/")
 const invCont = {}
 
 /* ***************************
- *  Build inventory by classification view
+ * Build inventory by classification view
  * ************************** */
 invCont.buildByClassificationId = async function (req, res, next) {
   const classification_id = req.params.classificationId;
@@ -24,7 +24,7 @@ invCont.buildByClassificationId = async function (req, res, next) {
 }
 
 /* ***************************
- *  Build vehicle detail view
+ * Build vehicle detail view
  * ************************** */
 invCont.buildDetailView = async function (req, res, next) {
   const inv_id = req.params.invId;
@@ -44,7 +44,7 @@ invCont.buildDetailView = async function (req, res, next) {
 }
 
 /* ****************************************
-*  Build Management view
+* Build Management view
 * *************************************** */
 invCont.buildManagement = async function (req, res, next) {
   let nav = await utilities.getNav()
@@ -58,7 +58,7 @@ invCont.buildManagement = async function (req, res, next) {
 }
 
 /* ****************************************
-*  Build Add-Classification view
+* Build Add-Classification view
 * *************************************** */
 invCont.buildAddClassification = async function (req, res, next) {
   let nav = await utilities.getNav()
@@ -72,7 +72,7 @@ invCont.buildAddClassification = async function (req, res, next) {
 /* ****************************************
 * Process New Classification
 * *************************************** */
-invCont.addClassification = async function (req, res, next) { 
+invCont.addClassification = async function (req, res, next) {
   let nav = await utilities.getNav()
   const { classification_name } = req.body
 
@@ -150,72 +150,25 @@ invCont.addInventory = async function (req, res, next) {
     classification_id,
   } = req.body
 
-  // --- Server-side validation ---
-  let errors = []
-
-  if (!inv_make || inv_make.length < 3) errors.push("Make must be at least 3 characters.")
-  if (!inv_model || inv_model.length < 3) errors.push("Model must be at least 3 characters.")
-  
-  const parsedInvYear = parseInt(inv_year);
-  if (isNaN(parsedInvYear) || parsedInvYear < 1900 || parsedInvYear > (new Date().getFullYear() + 1)) errors.push("Valid year is required.")
-  
-  if (!inv_description) errors.push("Description is required.")
-  
-  // Basic image path check
-  if (!inv_image || !/^\/images\/vehicles\/.+\.(png|jpe?g|gif|webp)$/.test(inv_image)) errors.push("Valid image path is required (e.g., /images/vehicles/image.png).")
-  if (!inv_thumbnail || !/^\/images\/vehicles\/.+-tn\.(png|jpe?g|gif|webp)$/.test(inv_thumbnail)) errors.push("Valid thumbnail path is required (e.g., /images/vehicles/image-tn.png).")
-  
   // Custom parsing for price and miles: remove commas before parseFloat
-  const cleanedInvPrice = inv_price ? inv_price.replace(/,/g, '') : ''; // Remove commas
-  const parsedInvPrice = parseFloat(cleanedInvPrice); 
+  const cleanedInvPrice = inv_price ? inv_price.replace(/,/g, '') : '';
+  const parsedInvPrice = parseFloat(cleanedInvPrice);
 
-  if (isNaN(parsedInvPrice) || parsedInvPrice < 0 || !Number.isInteger(parsedInvPrice)) { 
-      errors.push("Price must be a positive whole number (e.g., 25,000).") // Example with comma for user guidance
-  }
-  
-  const cleanedInvMiles = inv_miles ? inv_miles.replace(/,/g, '') : ''; // Remove commas
-  const parsedInvMiles = parseFloat(cleanedInvMiles); 
+  const cleanedInvMiles = inv_miles ? inv_miles.replace(/,/g, '') : '';
+  const parsedInvMiles = parseFloat(cleanedInvMiles);
 
-  if (isNaN(parsedInvMiles) || parsedInvMiles < 0 || !Number.isInteger(parsedInvMiles)) { 
-      errors.push("Miles must be a positive whole number (e.g., 50,000).") // Example with comma for user guidance
-  }
-
-  if (!inv_color || !/^[a-zA-Z\s\-]+$/.test(inv_color)) errors.push("Color can only contain letters, spaces, and hyphens.")
-  if (!classification_id || isNaN(classification_id)) errors.push("A classification must be selected.")
-
-
-  if (errors.length > 0) {
-    let classificationList = await utilities.buildClassificationList(classification_id) // Rebuild with selected value
-    res.render("./inventory/add-inventory", {
-      title: "Add New Vehicle",
-      nav,
-      classificationList,
-      errors: { array: () => errors }, // Mimic express-validator errors object structure
-      inv_make,
-      inv_model,
-      inv_year,
-      inv_description,
-      inv_image,
-      inv_thumbnail,
-      inv_price, // Send back original input for sticky form
-      inv_miles, // Send back original input for sticky form
-      inv_color,
-      classification_id,
-    })
-    return
-  }
 
   // --- Call the model to add to the database ---
   try {
     const invResult = await invModel.addInventory(
       inv_make,
       inv_model,
-      parsedInvYear, 
+      inv_year,
       inv_description,
       inv_image,
       inv_thumbnail,
-      parsedInvPrice, 
-      parsedInvMiles, 
+      parsedInvPrice,
+      parsedInvMiles,
       inv_color,
       classification_id
     )
@@ -240,7 +193,7 @@ invCont.addInventory = async function (req, res, next) {
 }
 
 /* ***************************
- *  Return Inventory by Classification As JSON
+ * Return Inventory by Classification As JSON
  * ************************** */
 invCont.getInventoryJSON = async (req, res, next) => {
   const classification_id = parseInt(req.params.classification_id)
@@ -253,7 +206,7 @@ invCont.getInventoryJSON = async (req, res, next) => {
 }
 
 /* ***************************
- *  Build edit inventory view
+ * Build edit inventory view
  * ************************** */
 invCont.buildEditInventoryView = async function (req, res, next) {
   const inv_id = parseInt(req.params.invId)
@@ -278,6 +231,74 @@ invCont.buildEditInventoryView = async function (req, res, next) {
     inv_color: itemData.inv_color,
     classification_id: itemData.classification_id
   })
+}
+
+/* ***************************
+ * Process update inventory
+ * ************************** */
+invCont.updateInventory = async function (req, res, next) {
+  let nav = await utilities.getNav()
+  const {
+    inv_id,
+    inv_make,
+    inv_model,
+    inv_year,
+    inv_description,
+    inv_image,
+    inv_thumbnail,
+    inv_price,
+    inv_miles,
+    inv_color,
+    classification_id,
+  } = req.body
+
+  // Custom parsing for price and miles: remove commas before parseFloat
+  const cleanedInvPrice = inv_price ? inv_price.replace(/,/g, '') : '';
+  const parsedInvPrice = parseFloat(cleanedInvPrice);
+
+  const cleanedInvMiles = inv_miles ? inv_miles.replace(/,/g, '') : '';
+  const parsedInvMiles = parseFloat(cleanedInvMiles);
+
+  const updateResult = await invModel.updateInventory(
+    inv_id,
+    inv_make,
+    inv_model,
+    inv_year,
+    inv_description,
+    inv_image,
+    inv_thumbnail,
+    parsedInvPrice,
+    parsedInvMiles,
+    inv_color,
+    classification_id
+  )
+
+  if (updateResult) {
+    const itemName = updateResult.inv_make + " " + updateResult.inv_model
+    req.flash("notice", `The ${itemName} was successfully updated.`)
+    res.redirect("/inv/management")
+  } else {
+    const classificationList = await utilities.buildClassificationList(classification_id)
+    const itemName = `${inv_make} ${inv_model}`
+    req.flash("notice", "Sorry, the update failed.")
+    res.status(501).render("inventory/edit-inventory", {
+      title: "Edit " + itemName,
+      nav,
+      classificationList: classificationList,
+      errors: null,
+      inv_id,
+      inv_make,
+      inv_model,
+      inv_year,
+      inv_description,
+      inv_image,
+      inv_thumbnail,
+      inv_price,
+      inv_miles,
+      inv_color,
+      classification_id
+    })
+  }
 }
 
 module.exports = invCont

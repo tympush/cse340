@@ -1,8 +1,9 @@
-// Needed Resources 
+// Needed Resources
 const express = require("express")
-const router = new express.Router() 
+const router = new express.Router()
 const invController = require("../controllers/invController")
-const utilities = require("../utilities/");
+const utilities = require("../utilities/")
+const invValidate = require("../utilities/inventory-validation") // Import the new validation file
 
 // Route to build inventory by classification view
 router.get("/type/:classificationId", invController.buildByClassificationId);
@@ -19,7 +20,12 @@ router.get("/getInventory/:classification_id", utilities.handleErrors(invControl
 // Route to build edit inventory view
 router.get("/edit/:invId", utilities.handleErrors(invController.buildEditInventoryView));
 // Route to process the edit inventory form submission
-router.post("/update/", utilities.handleErrors(invController.updateInventory));
+router.post(
+  "/update/",
+  invValidate.newInventoryRules(), // Add validation rules
+  invValidate.checkUpdateData, // Add checkUpdateData middleware
+  utilities.handleErrors(invController.updateInventory)
+);
 
 // Process the new classification data
 router.post(
@@ -29,6 +35,8 @@ router.post(
 // Route to process Add-Inventory submission
 router.post(
   "/add-inventory",
+  invValidate.newInventoryRules(), // Add validation rules
+  invValidate.checkAddData, // Add checkAddData middleware
   invController.addInventory
 );
 
