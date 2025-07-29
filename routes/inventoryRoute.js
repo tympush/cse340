@@ -2,6 +2,7 @@
 const express = require("express")
 const router = new express.Router() 
 const invController = require("../controllers/invController")
+const utilities = require("../utilities/");
 
 // Route to build inventory by classification view
 router.get("/type/:classificationId", invController.buildByClassificationId);
@@ -13,6 +14,8 @@ router.get("/management/", invController.buildManagement);
 router.get("/add-classification/", invController.buildAddClassification);
 // Route to build Add-Inventory view
 router.get("/add-inventory", invController.buildAddInventory);
+// Route to display inventory in management view
+router.get("/getInventory/:classification_id", utilities.handleErrors(invController.getInventoryJSON))
 
 // Process the new classification data
 router.post(

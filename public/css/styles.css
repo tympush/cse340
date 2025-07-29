@@ -395,6 +395,10 @@ select:required:valid
   font-size: 14px;
 }
 
+.management-text {
+  color: var(--text-main);
+}
+
 @media (min-width: 800px) {
   body {
     background: url('/images/site/better-checker.png') repeat;

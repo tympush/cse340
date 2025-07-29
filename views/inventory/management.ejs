@@ -10,3 +10,20 @@
   <a href="./add-classification" class="managementLink">Add New Classification</a>
   <a href="./add-inventory" class="managementLink">Add New Inventory</a>
 </div>
+
+<h2 class="management-text">Manage Inventory</h2>
+<p class="management-text">Select a classification from the list to see the items belonging to the classification.</p>
+
+<% if (typeof classificationSelect !== 'undefined' && classificationSelect) { %>
+  <%- classificationSelect %>
+<% } else { %>
+  <select id="classificationSelect">
+    <option value="">No classifications available</option>
+  </select>
+<% } %>
+
+<table id="inventoryDisplay"></table>
+
+<noscript>JavaScript must be enabled to use this page.</noscript>
+
+<script src="../../js/inventory.js"></script>
