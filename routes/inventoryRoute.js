@@ -19,13 +19,8 @@ router.get("/add-inventory", invController.buildAddInventory);
 router.get("/getInventory/:classification_id", utilities.handleErrors(invController.getInventoryJSON))
 // Route to build edit inventory view
 router.get("/edit/:invId", utilities.handleErrors(invController.buildEditInventoryView));
-// Route to process the edit inventory form submission
-router.post(
-  "/update/",
-  invValidate.newInventoryRules(), // Add validation rules
-  invValidate.checkUpdateData, // Add checkUpdateData middleware
-  utilities.handleErrors(invController.updateInventory)
-);
+// Route to build delete inventory view
+router.get("/delete/:invId", utilities.handleErrors(invController.buildDeleteInventoryView));
 
 // Process the new classification data
 router.post(
@@ -38,6 +33,18 @@ router.post(
   invValidate.newInventoryRules(), // Add validation rules
   invValidate.checkAddData, // Add checkAddData middleware
   invController.addInventory
+);
+// Route to process the edit inventory form submission
+router.post(
+  "/update/",
+  invValidate.newInventoryRules(), // validation rules
+  invValidate.checkUpdateData, // middleware
+  utilities.handleErrors(invController.updateInventory)
+);
+// Route to process the delete inventory form submission
+router.post(
+  "/delete/",
+  utilities.handleErrors(invController.deleteInventory)
 );
 
 module.exports = router;

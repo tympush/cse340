@@ -1,0 +1,51 @@
+<% if (title) { %>
+<h1><%= title %></h1>
+<% } else {
+  res.redirect('/')
+} %>
+
+<%- messages() %>
+
+<% if (errors) { %>
+  <ul class="notice">
+    <% errors.array().forEach(error => { %>
+      <li><%= error.msg %></li> 
+    <% }) %>
+  </ul>
+<% } %>
+
+<form action="/inv/delete" method="post" id="deleteInvForm">
+    
+    <label for="inv_make">Make:</label>
+    <input readonly type="text" id="inv_make" name="inv_make" required
+        value="<%= locals.inv_make %>"
+        pattern=".{3,}" title="Make must be at least 3 characters."
+        placeholder="Min 3 characters">
+
+    <label for="inv_model">Model:</label>
+    <input readonly type="text" id="inv_model" name="inv_model" required
+        value="<%= locals.inv_model %>"
+        pattern=".{3,}" title="Model must be at least 3 characters."
+        placeholder="Min 3 characters">
+
+    <label for="inv_price">Price:</label>
+    <input readonly type="text" id="inv_price" name="inv_price" required
+        value="<%= locals.inv_price %>"
+        pattern="^\d{1,3}(,\d{3})*$" title="Price must be a positive whole number (e.g., 25,000)."
+        placeholder="e.g. 25,000">
+
+    <label for="inv_year">Year:</label>
+    <input readonly type="number" id="inv_year" name="inv_year" required
+        value="<%= locals.inv_year %>"
+        min="1900" max="<%= new Date().getFullYear() + 1 %>"
+        title="Year must be a valid year."
+        placeholder="e.g. 2023">
+
+    <button type="submit" title="Confirm Deletion - The delete is permanent.">Delete Vehicle</button>
+
+    <input type="hidden" name="inv_id"
+        <% if(locals.inv_id) { %> value="<%= locals.inv_id %>"
+    <% } %>>
+</form>
+
+<script src="/js/inventory-comma-seperators.js"></script>
