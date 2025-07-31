@@ -31,4 +31,7 @@ router.get("/", utilities.checkLogin, utilities.handleErrors(accountController.b
 // Logout route
 router.get("/logout", utilities.handleErrors(accountController.accountLogout));
 
+// Route to check if the user is an employee or admin
+router.get("/", accountController.checkEmployeeOrAdmin, utilities.handleErrors(accountController.buildAccountManagement))
+
 module.exports = router
