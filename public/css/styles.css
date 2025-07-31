@@ -43,11 +43,11 @@ header {
   color: var(--text-main);
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3, h4, h5, h6, th {
   font-family: "Tinos", serif;
 }
 
-p, a, button, li, label, small {
+p, a, button, li, label, small, td {
   font-family: "Lexend Exa", sans-serif;
 }
 
@@ -410,6 +410,39 @@ select:required:valid
   border-radius: 6px;
 }
 
+#inventoryDisplay {
+  border-collapse: collapse;
+  width: 100%;
+  margin-top: 10px;
+}
+
+#inventoryDisplay th,
+#inventoryDisplay td {
+  border: 2px solid var(--primary-accent);
+  padding: 8px;
+  text-align: left;
+}
+
+#inventoryDisplay th {
+  background-color: var(--primary-accent);
+  color: var(--text-light);
+  font-size: 18px;
+}
+
+#inventoryDisplay thead td {
+  background-color: var(--primary-accent);
+}
+
+#inventoryDisplay td a {
+  color: var(--primary-accent);
+}
+
+#inventoryDisplay tbody td,
+#inventoryDisplay tbody a
+{
+  font-size: 14px;
+}
+
 @media (min-width: 800px) {
   body {
     background: url('/images/site/better-checker.png') repeat;
@@ -559,5 +592,15 @@ select:required:valid
 
   #classificationList {
     font-size: 24px;
+  }
+
+  #inventoryDisplay th {
+    font-size: 22px;
+  }
+
+  #inventoryDisplay tbody td,
+  #inventoryDisplay tbody a
+  {
+    font-size: 18px;
   }
 }
