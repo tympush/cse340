@@ -36,11 +36,15 @@ header {
   color: var(--text-main);
 }
 
-#accountLink {
+#tools a {
   font-size: 14px;
   font-family: "Lexend Exa", sans-serif;
   text-decoration: none;
   color: var(--text-main);
+  background-color: var(--inventory-item-bg);
+  padding: 10px;
+  border-radius: 6px;
+  margin: 0 5px;
 }
 
 h1, h2, h3, h4, h5, h6, th {
@@ -462,7 +466,7 @@ select:required:valid
     font-size: 48px;
   }
 
-  #accountLink {
+  #tools a {
     font-size: 20px;
   }
 

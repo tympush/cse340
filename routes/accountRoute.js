@@ -28,4 +28,7 @@ router.post(
 // Route to account management view
 router.get("/", utilities.checkLogin, utilities.handleErrors(accountController.buildAccountManagement))
 
+// Logout route
+router.get("/logout", utilities.handleErrors(accountController.accountLogout));
+
 module.exports = router
