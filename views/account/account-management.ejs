@@ -3,7 +3,7 @@
 <%- messages() %>
 
 <h2>Welcome <%= accountData.account_firstname %></h2>
-<a href="">Update Account Information</a>
+<a href="./update/<%= accountData.account_id %>">Update Account Information</a>
 
 <% if (isEmployeeOrAdmin) { %>
     <h3>Management Access Enabled</h3>
