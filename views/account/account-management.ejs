@@ -2,10 +2,14 @@
     
 <%- messages() %>
 
-<h2>Welcome <%= accountData.account_firstname %></h2>
-<a href="/account/update/<%= accountData.account_id %>">Update Account Information</a>
+<div id="accountManagementPage">
+    <div id="accountManagementContainer">
+        <h2 id="welcomemsg">Welcome <%= accountData.account_firstname %>!</h2>
+        <a href="/account/update/<%= accountData.account_id %>" class="accountManagementLink">Update Account Information</a>
 
-<% if (isEmployeeOrAdmin) { %>
-    <h3>Management Access Enabled</h3>
-    <a href="../inv/management">Inventory Management</a>
-<% } %>
+        <% if (isEmployeeOrAdmin) { %>
+            <h3>Management Access Enabled</h3>
+            <a href="../inv/management" class="accountManagementLink">Inventory Management</a>
+        <% } %>
+    </div>
+</div>

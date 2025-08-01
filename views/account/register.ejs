@@ -11,16 +11,16 @@
 <% } %>
 
 <form action="/account/register" method="post">
-    <label for="fname">First Name<span style="color:orangered">*</span></label>
+    <label for="fname">First Name<span style="color:yellow">*</span></label>
     <input type="text" id="fname" name="account_firstname" required value="<%= locals.account_firstname %>">
     
-    <label for="lname">Last Name<span style="color:orangered">*</span></label>
+    <label for="lname">Last Name<span style="color:yellow">*</span></label>
     <input type="text" id="lname" name="account_lastname" required value="<%= locals.account_lastname %>">
     
-    <label for="email">Email<span style="color:orangered">*</span></label>
+    <label for="email">Email<span style="color:yellow">*</span></label>
     <input type="email" id="email" name="account_email" required value="<%= locals.account_email %>">
     
-    <label for="password">Password<span style="color:orangered">*</span></label>
+    <label for="password">Password<span style="color:yellow">*</span></label>
     <small>
         minimum 12 chars, 1 capital, 1 number and 1 special char!
     </small>

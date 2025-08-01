@@ -17,8 +17,8 @@
 <div class="account-update-container">
     <!-- Account Update Form -->
     <form action="/account/update-account" method="post" id="accountUpdateForm">
-        <h2>Change Account Information</h2>
-        <p>Use this form to update your first name, last name, and email address.</p>
+        <h2 class="formHElement">Change Account Information</h2>
+        <div class="formMessageContainer"><p class="formMessage">Update your account's information</p></div>
 
         <label for="account_firstname">First Name:</label>
         <input type="text" id="account_firstname" name="account_firstname" required
@@ -42,18 +42,20 @@
 
     <!-- Change Password Form -->
     <form action="/account/update-password" method="post" id="changePasswordForm">
-        <h2>Change Password</h2>
-        <p>Changing your password will immediately log you out. Please re-login with your new password.</p>
+        <h2 class="formHElement">Change Password</h2>
+        <div class="formMessageContainer"><p class="formMessage">!!! Creating a new password will remove your current one.</p></div>
 
         <label for="password">New Password: </label>
         <small>
             minimum 12 chars, 1 capital, 1 number and 1 special char!
         </small>
-        <input type="password" id="pword" name="account_password" required
-            pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}" 
-            title="Password must be at least 12 characters and contain at least 1 uppercase letter, 1 lowercase letter, 1 number, and 1 special character."
-            placeholder="Enter new password">
-        <button type="button" id="pswdBtn">Show</button>
+        <div>
+          <input type="password" id="pword" name="account_password" required
+              pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}" 
+              title="Password must be at least 12 characters and contain at least 1 uppercase letter, 1 lowercase letter, 1 number, and 1 special character."
+              placeholder="Enter new password">
+          <button type="button" id="pswdBtn">Show</button>
+        </div>
 
         <input type="hidden" name="account_id" value="<%= locals.account_id %>">
         <button type="submit" class="form-btn">Change Password</button>
