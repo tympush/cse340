@@ -141,8 +141,8 @@ async function accountLogout(req, res) {
 /* ****************************************
 * Middleware to check if account type is "Employee" or "Admin"
 * *************************************** */
-function checkEmployeeOrAdmin(req, res, next) {
-  if (res.locals.loggedin && (res.locals.accountData.account_type === "Admin" || res.locals.accountData.account_type === "Employee")) {
+function checkEmployeeOrAdminRedirect(req, res, next) {
+  if (utilities.checkEmployeeOrAdmin(res)) {
     next();
   } else {
     req.flash("notice", "You do not have permission to access this page. Please Log in as an Employee or Admin.");
@@ -157,5 +157,5 @@ module.exports = {
   accountLogin,
   buildAccountManagement,
   accountLogout,
-  checkEmployeeOrAdmin
+  checkEmployeeOrAdminRedirect
 }

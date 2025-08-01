@@ -12,28 +12,28 @@ router.get("/type/:classificationId", utilities.handleErrors(invController.build
 router.get("/detail/:invId", utilities.handleErrors(invController.buildDetailView));
 
 // Route to build management view
-router.get("/management/", accountController.checkEmployeeOrAdmin, utilities.handleErrors(invController.buildManagement));
+router.get("/management/", accountController.checkEmployeeOrAdminRedirect, utilities.handleErrors(invController.buildManagement));
 // Route to add-classification view
-router.get("/add-classification/", accountController.checkEmployeeOrAdmin, utilities.handleErrors(invController.buildAddClassification));
+router.get("/add-classification/", accountController.checkEmployeeOrAdminRedirect, utilities.handleErrors(invController.buildAddClassification));
 // Route to build Add-Inventory view
-router.get("/add-inventory", accountController.checkEmployeeOrAdmin, utilities.handleErrors(invController.buildAddInventory));
+router.get("/add-inventory", accountController.checkEmployeeOrAdminRedirect, utilities.handleErrors(invController.buildAddInventory));
 // Route to display inventory in management view
-router.get("/getInventory/:classification_id", accountController.checkEmployeeOrAdmin, utilities.handleErrors(invController.getInventoryJSON))
+router.get("/getInventory/:classification_id", accountController.checkEmployeeOrAdminRedirect, utilities.handleErrors(invController.getInventoryJSON))
 // Route to build edit inventory view
-router.get("/edit/:invId", accountController.checkEmployeeOrAdmin, utilities.handleErrors(invController.buildEditInventoryView));
+router.get("/edit/:invId", accountController.checkEmployeeOrAdminRedirect, utilities.handleErrors(invController.buildEditInventoryView));
 // Route to build delete inventory view
-router.get("/delete/:invId", accountController.checkEmployeeOrAdmin, utilities.handleErrors(invController.buildDeleteInventoryView));
+router.get("/delete/:invId", accountController.checkEmployeeOrAdminRedirect, utilities.handleErrors(invController.buildDeleteInventoryView));
 
 // Process the new classification data
 router.post(
   "/add-classification",
-  accountController.checkEmployeeOrAdmin,
+  accountController.checkEmployeeOrAdminRedirect,
   invController.addClassification
 );
 // Route to process Add-Inventory submission
 router.post(
   "/add-inventory",
-  accountController.checkEmployeeOrAdmin,
+  accountController.checkEmployeeOrAdminRedirect,
   invValidate.newInventoryRules(), // Add validation rules
   invValidate.checkAddData, // Add checkAddData middleware
   invController.addInventory
@@ -41,7 +41,7 @@ router.post(
 // Route to process the edit inventory form submission
 router.post(
   "/update/",
-  accountController.checkEmployeeOrAdmin,
+  accountController.checkEmployeeOrAdminRedirect,
   invValidate.newInventoryRules(), // validation rules
   invValidate.checkUpdateData, // middleware
   utilities.handleErrors(invController.updateInventory)
@@ -49,7 +49,7 @@ router.post(
 // Route to process the delete inventory form submission
 router.post(
   "/delete/",
-  accountController.checkEmployeeOrAdmin,
+  accountController.checkEmployeeOrAdminRedirect,
   utilities.handleErrors(invController.deleteInventory)
 );
 

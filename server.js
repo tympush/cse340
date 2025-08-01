@@ -22,6 +22,13 @@ const cookieParser = require("cookie-parser")
 /* ***********************
  * Middleware
  * ************************/
+// Default res.locals variables to prevent errors
+app.use(function(req, res, next) {
+  res.locals.loggedin = false;
+  res.locals.isEmployeeOrAdmin = false;
+  next();
+});
+
  app.use(session({
   store: new (require('connect-pg-simple')(session))({
     createTableIfMissing: true,

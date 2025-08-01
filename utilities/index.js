@@ -117,19 +117,19 @@ Util.buildClassificationList = async function (classification_id = null) {
 * Middleware to check token validity
 **************************************** */
 Util.checkJWTToken = (req, res, next) => {
-  res.locals.loggedin = 0; 
   if (req.cookies.jwt) {
     jwt.verify(
     req.cookies.jwt,
     process.env.ACCESS_TOKEN_SECRET,
     function (err, accountData) {
       if (err) {
-      req.flash("Please log in")
-      res.clearCookie("jwt")
-      return res.redirect("/account/login")
+        req.flash("Please log in")
+        res.clearCookie("jwt")
+        return res.redirect("/account/login")
       }
       res.locals.accountData = accountData
-      res.locals.loggedin = 1
+      res.locals.loggedin = true
+      Util.checkEmployeeOrAdmin(res);
       next()
     })
   } else {
@@ -138,15 +138,27 @@ Util.checkJWTToken = (req, res, next) => {
 }
 
 /* ****************************************
- *  Check Login
+ * Check Login
  * ************************************ */
- Util.checkLogin = (req, res, next) => {
+Util.checkLogin = (req, res, next) => {
   if (res.locals.loggedin) {
     next()
   } else {
     req.flash("notice", "Please log in.")
     return res.redirect("/account/login")
   }
- }
+}
+
+/* ****************************************
+ * Check if account type is "Employee" or "Admin" and set a local variable
+ * *************************************** */
+Util.checkEmployeeOrAdmin = function (res) {
+  if (res.locals.loggedin && (res.locals.accountData.account_type === "Admin" || res.locals.accountData.account_type === "Employee")) {
+    res.locals.isEmployeeOrAdmin = true;
+    return true;
+  }
+  res.locals.isEmployeeOrAdmin = false;
+  return false;
+}
 
 module.exports = Util
