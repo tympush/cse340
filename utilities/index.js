@@ -114,19 +114,28 @@ Util.handleErrors = fn => (req, res, next) => Promise.resolve(fn(req, res, next)
 /* **************************************
  * Build the single vehicle detail view HTML
  * ************************************ */
-Util.buildDetailView = function (vehicle) {
-  let detail = '<div id="vehicleDetail">'
-  detail += '<div class="detailImage"><img src="' + vehicle.inv_image + '" alt="Image of ' + vehicle.inv_make + ' ' + vehicle.inv_model + '"></div>'
-  detail += '<div class="detailInfo">'
-  detail += '<h2 class="detailTitle">' + vehicle.inv_make + ' ' + vehicle.inv_model + ' Details</h2>'
-  detail += '<ul>'
-  detail += '<li><strong>Price:</strong> $' + new Intl.NumberFormat('en-US').format(vehicle.inv_price) + '</li>'
-  detail += '<li><strong>Description:</strong> ' + vehicle.inv_description + '</li>'
-  detail += '<li><strong>Color:</strong> ' + vehicle.inv_color + '</li>'
-  detail += '<li><strong>Miles:</strong> ' + new Intl.NumberFormat('en-US').format(vehicle.inv_miles) + '</li>'
-  detail += '</ul>'
-  detail += '</div></div>'
-  return detail
+Util.buildDetailView = function(vehicle) {
+  if (!vehicle) {
+    return '<p class="notice">Sorry, no matching vehicle could be found.</p>';
+  }
+  let detail = '<div class="vehicle-detail">';
+  detail += `<div class="vehicle-image-container">`
+  detail += `<p>This vehicle has passed inspection by an ASE-certified technician.</p>`;
+  detail += `<img src="${vehicle.inv_image}" alt="Image of ${vehicle.inv_make} ${vehicle.inv_model}">`;
+  detail += `</div>`;
+  detail += `<div class="vehicle-info-container">`;
+  detail += `<div class="price-tag">`
+  detail += `<h2>${vehicle.inv_year} ${vehicle.inv_make} ${vehicle.inv_model}</h2>`;
+  detail += `<p><strong>Price:</strong> $${new Intl.NumberFormat('en-US').format(vehicle.inv_price)}</p>`;
+  detail += `</div>`;
+  detail += `<div class="description-tag">`
+  detail += `<p><strong>Description:</strong> ${vehicle.inv_description}</p>`;
+  detail += `<p><strong>Color:</strong> ${vehicle.inv_color}</p>`;
+  detail += `<p><strong>Miles:</strong> ${new Intl.NumberFormat('en-US').format(vehicle.inv_miles)}</p>`;
+  detail += `</div>`;
+  detail += `</div>`;
+  detail += '</div>';
+  return detail;
 }
 
 /* ****************************************
