@@ -12,7 +12,6 @@
   --contrast: yellow;
 }
 
-/******* Change Box Model ***************/
 *,
 *:before,
 *:after {
@@ -37,6 +36,11 @@ header {
   color: var(--text-main);
 }
 
+#tools {
+  display: flex;
+  flex-direction: column;
+}
+
 #tools a {
   font-size: 14px;
   font-family: "Lexend Exa", sans-serif;
@@ -45,7 +49,7 @@ header {
   background-color: var(--inventory-item-bg);
   padding: 10px;
   border-radius: 6px;
-  margin: 0 5px;
+  margin: 5px;
   transition: color 0.2s, background-color 0.2s;
 }
 
@@ -281,11 +285,11 @@ footer {
   text-align: center;
 }
 
-.vehicle-detail {
+#vehicleDetail {
   display: block;
 }
 
-.vehicle-detail .vehicle-image-container p{
+#vehicleDetail p{
   background-color: var(--primary-accent);
   color: var(--text-light);
   padding: 10px;
@@ -293,7 +297,7 @@ footer {
   font-size: 14px;
 }
 
-.vehicle-detail .vehicle-image-container img {
+#vehicleDetail img {
   width: 100%;
   height: auto;
   border-bottom: 10px solid var(--primary-bg);
@@ -351,14 +355,16 @@ form small {
 }
 
 form #pword{
-  width: 90%;
+  width: 100%;
+  margin-bottom: 8px;
 }
 
 form #pswdBtn {
   font-size: 12px;
   padding: 4px;
   border-radius: 6px;
-  width: 9%;
+  width: 100%;
+  margin-bottom: 16px;
 }
 
 form button[type="submit"] {
@@ -549,8 +555,14 @@ select:required:valid
     font-size: 48px;
   }
 
+  #tools {
+    display: flex;
+    flex-direction: row;
+  }
+
   #tools a {
     font-size: 20px;
+    margin: 0 5px;
   }
 
   nav {
@@ -616,13 +628,13 @@ select:required:valid
   }
 
   /*ITEM DETAILS*/
-  .vehicle-detail {
+  #vehicleDetail {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 20px;
   }
   
-  .vehicle-detail .vehicle-image-container p{
+  #vehicleDetail p{
     font-size: 16px;
   }
 
@@ -653,8 +665,14 @@ select:required:valid
     font-size: 24px;
   }
 
+    form #pword{
+    width: 90%;
+  }
+
   form #pswdBtn {
     font-size: 16px;
+    width: 9%;
+    margin-bottom: 0;
   }
 
   form button[type="submit"] {
