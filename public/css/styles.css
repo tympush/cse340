@@ -39,6 +39,7 @@ header {
 #tools {
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
 #tools a {
@@ -556,7 +557,6 @@ select:required:valid
   }
 
   #tools {
-    display: flex;
     flex-direction: row;
   }
 
