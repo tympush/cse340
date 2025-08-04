@@ -10,6 +10,9 @@
         <% if (isEmployeeOrAdmin) { %>
             <h3>Management Access Enabled</h3>
             <a href="../inv/management" class="accountManagementLink">Inventory Management</a>
+            <% if (isAdmin) { %>
+                <a href="" class="accountManagementLink">Accounts Management</a>
+            <% } %>
         <% } %>
     </div>
 </div>

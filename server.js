@@ -26,6 +26,7 @@ const cookieParser = require("cookie-parser")
 app.use(function(req, res, next) {
   res.locals.loggedin = false;
   res.locals.isEmployeeOrAdmin = false;
+  res.locals.isAdmin = false;
   next();
 });
 

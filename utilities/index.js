@@ -75,6 +75,7 @@ Util.checkJWTToken = (req, res, next) => {
       res.locals.accountData = accountData
       res.locals.loggedin = true
       Util.checkEmployeeOrAdmin(res);
+      Util.checkAdmin(res);
       next()
     })
   } else {
@@ -103,6 +104,18 @@ Util.checkEmployeeOrAdmin = function (res) {
     return true;
   }
   res.locals.isEmployeeOrAdmin = false;
+  return false;
+}
+
+/* ****************************************
+ * Check if account type is "Admin" (only Admin for even higher access)
+ * *************************************** */
+Util.checkAdmin = function (res) {
+  if (res.locals.loggedin && res.locals.accountData.account_type === "Admin") {
+    res.locals.isAdmin = true;
+    return true;
+  }
+  res.locals.isAdmin = false;
   return false;
 }
 

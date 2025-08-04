@@ -152,6 +152,18 @@ function checkEmployeeOrAdminRedirect(req, res, next) {
 }
 
 /* ****************************************
+* Middleware to check if account type is "Admin" (only Admin for even higher access)
+* *************************************** */
+function checkAdminRedirect(req, res, next) {
+  if (utilities.checkAdmin(res)) {
+    next();
+  } else {
+    req.flash("notice", "You do not have permission to access this page. Please Log in as an Admin.");
+    return res.redirect("/account/login");
+  }
+}
+
+/* ****************************************
 * Deliver account update view
 * *************************************** */
 async function buildAccountUpdateView(req, res, next) {
