@@ -186,7 +186,7 @@ Util.buildUserList = async function(data){
     userList += `<td>${account.account_firstname}</td>`
     userList += `<td>${account.account_lastname}</td>`
     userList += `<td>${account.account_email}</td>`
-    userList += `<td>`
+    userList += `<td class="tdselect">`
     userList += `<select class="account-type-select">`
     userList += `<option value="Client" ${account.account_type === 'Client' ? 'selected' : ''}>Client</option>`
     userList += `<option value="Employee" ${account.account_type === 'Employee' ? 'selected' : ''}>Employee</option>`
