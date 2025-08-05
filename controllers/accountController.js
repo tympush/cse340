@@ -293,6 +293,7 @@ module.exports = {
   buildAccountManagement, 
   accountLogout,
   checkEmployeeOrAdminRedirect,
+  checkAdminRedirect,
   buildAccountUpdateView,
   updateAccount,
   updatePassword,
