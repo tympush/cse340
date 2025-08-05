@@ -88,11 +88,39 @@ async function updatePassword(account_password, account_id) {
   }
 }
 
+/* *****************************
+* Get all accounts
+* ***************************** */
+async function getAllAccounts() {
+  try {
+    const sql = 'SELECT account_id, account_firstname, account_lastname, account_email, account_type FROM account ORDER BY account_firstname'
+    const result = await pool.query(sql)
+    return result.rows
+  } catch (error) {
+    console.error("model error: " + error)
+  }
+}
+
+/* *****************************
+* Update account type
+* ***************************** */
+async function updateAccountType(account_id, account_type) {
+  try {
+    const sql = 'UPDATE account SET account_type = $1 WHERE account_id = $2 RETURNING *'
+    const result = await pool.query(sql, [account_type, account_id])
+    return result.rows[0]
+  } catch (error) {
+    console.error("model error: " + error)
+  }
+}
+
 module.exports = { 
   registerAccount, 
   checkExistingEmail, 
   getAccountByEmail, 
   getAccountById, 
   updateAccount, 
-  updatePassword 
+  updatePassword,
+  getAllAccounts,
+  updateAccountType
 }

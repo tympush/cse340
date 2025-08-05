@@ -172,4 +172,32 @@ Util.buildClassificationList = async function (classification_id = null) {
   return classificationList
 }
 
+/* ****************************************
+ * Build a user management table
+ * *************************************** */
+Util.buildUserList = async function(data){
+  let userList = '<table>'
+  userList += '<thead>'
+  userList += '<tr><th>First Name</th><th>Last Name</th><th>Email</th><th>Account Type</th></tr>'
+  userList += '</thead>'
+  userList += '<tbody>'
+  data.forEach(account => { 
+    userList += `<tr data-account-id="${account.account_id}">`
+    userList += `<td>${account.account_firstname}</td>`
+    userList += `<td>${account.account_lastname}</td>`
+    userList += `<td>${account.account_email}</td>`
+    userList += `<td>`
+    userList += `<select class="account-type-select">`
+    userList += `<option value="Client" ${account.account_type === 'Client' ? 'selected' : ''}>Client</option>`
+    userList += `<option value="Employee" ${account.account_type === 'Employee' ? 'selected' : ''}>Employee</option>`
+    userList += `<option value="Admin" ${account.account_type === 'Admin' ? 'selected' : ''}>Admin</option>`
+    userList += `</select>`
+    userList += `</td>`
+    userList += `</tr>`
+  })
+  userList += '</tbody>'
+  userList += '</table>'
+  return userList
+}
+
 module.exports = Util

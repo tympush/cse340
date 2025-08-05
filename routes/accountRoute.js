@@ -55,4 +55,10 @@ router.post(
   utilities.handleErrors(accountController.updatePassword)
 )
 
+// Route to user management view
+router.get("/user-management", utilities.checkLogin, utilities.handleErrors(accountController.buildUserManagement))
+
+// Process the account type change request
+router.post("/update-account-type", utilities.checkLogin, utilities.handleErrors(accountController.updateAccountType));
+
 module.exports = router

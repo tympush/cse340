@@ -250,6 +250,41 @@ async function updatePassword(req, res, next) {
   }
 }
 
+/* ****************************************
+ * Deliver user management view
+ * *************************************** */
+async function buildUserManagement(req, res, next) {
+  let nav = await utilities.getNav()
+  const accounts = await accountModel.getAllAccounts()
+  const userList = await utilities.buildUserList(accounts)
+  res.render("account/user-management", {
+    title: "User Management",
+    nav,
+    userList,
+    errors: null,
+  })
+}
+
+/* ****************************************
+ * Process account type update
+ * ************************************ */
+async function updateAccountType(req, res, next) {
+  const { account_id, account_type } = req.body;
+
+  // Perform validation if needed, or check if the user is an Admin
+  if (!res.locals.isAdmin) {
+    return res.status(403).json({ error: "Access denied." });
+  }
+
+  const updateResult = await accountModel.updateAccountType(account_id, account_type);
+
+  if (updateResult) {
+    res.status(200).json({ message: "Account type updated successfully." });
+  } else {
+    res.status(500).json({ error: "Failed to update account type." });
+  }
+}
+
 module.exports = { 
   buildLogin, 
   buildRegister, 
@@ -260,5 +295,7 @@ module.exports = {
   checkEmployeeOrAdminRedirect,
   buildAccountUpdateView,
   updateAccount,
-  updatePassword
+  updatePassword,
+  buildUserManagement,
+  updateAccountType
 }
