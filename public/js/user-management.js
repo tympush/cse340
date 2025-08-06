@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const accountId = row.dataset.accountId;
                 const newAccountType = target.value;
 
-                // Send the update request to the server
+                // send update request to the server
                 try {
                     const response = await fetch('/account/update-account-type', {
                         method: 'POST',
@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     const result = await response.json();
 
                     if (response.ok) {
-                        // Display a success message
+                        // display success message
                         const successMessage = `<p class="notice">${result.message}</p>`;
                         userManagementContainer.insertAdjacentHTML('afterbegin', successMessage);
                         setTimeout(() => {
@@ -35,9 +35,9 @@ document.addEventListener('DOMContentLoaded', () => {
                             if (noticeElement) {
                                 noticeElement.remove();
                             }
-                        }, 5000); // Remove message after 5 seconds
+                        }, 5000); //remove message after 5 seconds
                     } else {
-                        // Display an error message
+                        // display an error message
                         const errorMessage = `<p class="notice error-notice">${result.error}</p>`;
                         userManagementContainer.insertAdjacentHTML('afterbegin', errorMessage);
                     }
